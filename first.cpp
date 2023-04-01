@@ -7,7 +7,7 @@ class Array
     private:
     int capacity;
     int lastindex;
-    int*ptr=NULL;
+    int *ptr=NULL;
     public:
     void append()
     {
@@ -16,7 +16,7 @@ class Array
     Array(int size)
     {
          //inside Array constructor we will make dynamic array with the help of new
-        int*ptr=NULL;
+        int *ptr=NULL;
         ptr=new int[size];
         capacity=size;
         lastindex=-1;

@@ -37,7 +37,7 @@ public:
 // version 2 in this version we are going to add sorting,greatest element ,smallest element,search ele,sum of all element,average of all ele,rotate,
 void Array::remdupli()
 {
-    int i,j;
+    int i, j;
     int temp;
     for (j = 0; j <= lastindex; j++)
     {

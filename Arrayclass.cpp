@@ -15,19 +15,51 @@ public:
     void insert(int element, int index);
     void edit(int element,int index);
     void displayArray();
+    void deleteElement(int index);
+    int getEle(int index);
 };
+int Array::getEle(int index)
+{
+    if(index==-1||index>lastindex)
+    {
+        cout<<"Invalid Index"<<endl;
+    }
+    else
+    {
+        cout<<ptr[index]<<endl;
+    }
+}
+void Array::deleteElement(int index)
+{
+    if(lastindex==-1)
+    {
+        cout<<"Array is Empty"<<endl;
+    }
+    else if(index==-1||index>lastindex)
+    {
+        cout<<"Invalid Index"<<endl;
+    }
+    else
+    {
+        int i;
+        for(i=index;i<=lastindex;i++)
+        {
+            ptr[i]=ptr[i+1];
+        }
+    }
+}
 void Array::displayArray()
     {
         int i;
         for (i = 0; i <= lastindex; i++)
         {
-            cout << *(ptr + i);
+            cout << *(ptr + i)<<" ";
         }
         cout<<endl;
     }
 void Array::edit(int index,int num)
 {
-
+    ptr[index]=num;
 }
 void Array::insert(int index, int num)
     {
@@ -84,13 +116,24 @@ void Array::append(int num)
 
 int main()
 {
-    Array a(5);
+    Array a(8);
     cout << a.checkArrayEmpty();
-    a.append(5);
+    a.append(11);
     cout << endl;
-    a.append(6);
+    a.append(22);
+    a.append(33);
+    a.append(44);
     a.displayArray();
     a.insert(1,9);
     a.displayArray();
+    a.edit(3,32);
+    a.displayArray();
+    a.append(55);
+    a.append(67);
+    a.append(78);
+    a.displayArray();
+    a.deleteElement(5);
+    a.displayArray();
+    cout<<a.getEle(4);
     return 0;
 }

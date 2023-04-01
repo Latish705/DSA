@@ -116,7 +116,7 @@ void Array::append(int num)
 
 int main()
 {
-    Array a(10);
+    Array a(22);
     cout << a.checkArrayEmpty();
     a.append(11);
     cout << endl;

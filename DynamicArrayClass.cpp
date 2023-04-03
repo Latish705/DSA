@@ -20,6 +20,7 @@ class DynArray
         void edit(int index,int element);
         void DynArray::deleteElement(int index);
 };
+//this is version 1 in this we created just basic structure of our class 
 void DynArray::deleteElement(int index)
 {
     if (lastindex == -1)

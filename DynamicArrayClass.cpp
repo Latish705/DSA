@@ -18,9 +18,23 @@ class DynArray
         void append(int element);
         void insert(int index,int element);
         void edit(int index,int element);
-        void DynArray::deleteElement(int index);
+        void deleteElement(int index);
+        void displayArray();
 };
-//this is version 1 in this we created just basic structure of our class 
+
+//version 2 we will copy data first array when we make double array or half array
+void DynArray::displayArray()
+{
+    int i;
+    for (i = 0; i <= lastindex; i++)
+    {
+        cout << *(ptr + i) << " ";
+    }
+    cout << endl;
+}
+
+
+//this is version 1 in this we created just basic structure of our class
 void DynArray::deleteElement(int index)
 {
     if (lastindex == -1)
@@ -85,6 +99,8 @@ void DynArray::append(int element)
     if (lastindex == capacity - 1)
     {
         doubleArray();
+        ptr[lastindex+1]=element;
+        lastindex++;
         
     }
     else
@@ -111,6 +127,11 @@ void DynArray::doubleArray()
 {
     int *temp;
     temp=new int[capacity*2];
+    int i;
+    for(i=0;i<=lastindex;i++)
+    {
+        temp[i]=ptr[i];
+    }
     delete[]ptr;
     ptr=temp;
     capacity=capacity*2;
@@ -133,5 +154,17 @@ int DynArray::Ccapacity()
 
 int main()
 {
+    DynArray a(5);
+    a.append(12);
+    a.append(23);
+    a.append(34);
+    a.append(45);
+    a.append(56);
+    a.displayArray();
+    cout<<a.Ccapacity()<<endl;
+    a.append(67);
+    a.displayArray();
+    cout<<a.Ccapacity()<<endl;
+
     return 0;
 }

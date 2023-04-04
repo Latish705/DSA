@@ -135,17 +135,22 @@ int Array::greatestEle()
 void Array::sort()
 {
     int i;
+    int j;
     int temp;
     // in sorting we are using bubble sort technique
-    for (i = 0; i < lastindex; i++)
+    for(j=0;j<lastindex;j++)
     {
-        if (ptr[i + 1] < ptr[i])
+        for (i = 0; i < lastindex; i++)
         {
-            temp = ptr[i];
-            ptr[i] = ptr[i + 1];
-            ptr[i + 1] = temp;
+            if (ptr[i + 1] < ptr[i])
+            {
+                temp = ptr[i];
+                ptr[i] = ptr[i + 1];
+                ptr[i + 1] = temp;
+            }
         }
     }
+    
 }
 
 // version 1
@@ -264,7 +269,6 @@ int main()
     // Array a(11);
     // cout << a.checkArrayEmpty();
     // a.append(11);
-    // cout << endl;
     // a.append(22);
     // a.append(33);
     // a.append(44);
@@ -308,5 +312,13 @@ int main()
     // a.remdupli();
     // a.displayArray();
 
+    Array a(5);
+    a.append(34);
+    a.append(1);
+    a.append(2);
+    a.append(5);
+    a.append(8);
+    a.sort();
+    a.displayArray();
     return 0;
 }

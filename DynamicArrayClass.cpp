@@ -20,9 +20,16 @@ class DynArray
         void edit(int index,int element);
         void deleteElement(int index);
         void displayArray();
+        int getlastindex();
+        ~DynArray();
+
 };
 
 //version 2 we will copy data first array when we make double array or half array
+DynArray::~DynArray()
+{
+    delete[] ptr;
+}
 void DynArray::displayArray()
 {
     int i;
@@ -32,6 +39,32 @@ void DynArray::displayArray()
     }
     cout << endl;
 }
+int DynArray::getlastindex()
+{
+    return lastindex;
+}
+// void DynArray::insert(int index, int num)
+// {
+//     if (lastindex == capacity - 1)
+//     {
+//         doubleArray();
+        
+//     }
+//     else if (index < 0 || index >= lastindex + 1)
+//     {
+//         cout << "Invalid Index" << endl;
+//     }
+//     else
+//     {
+//         int i;
+//         for (i = lastindex; i >= index; i--)
+//         {
+//             ptr[i + 1] = ptr[i];
+//         }
+//         ptr[index] = num;
+//         lastindex++;
+//     }
+//}
 
 
 //this is version 1 in this we created just basic structure of our class
@@ -39,13 +72,7 @@ void DynArray::deleteElement(int index)
 {
     if (lastindex == -1)
     {
-        halfArray();
-          int i;
-        for (i = index; i < lastindex; i++)
-        {
-            ptr[i] = ptr[i + 1];
-        }
-        lastindex--;
+        cout<<"Array is Already Empty"<<endl;
 
     }
     else if (index == -1 || index > lastindex)
@@ -60,6 +87,10 @@ void DynArray::deleteElement(int index)
             ptr[i] = ptr[i + 1];
         }
         lastindex--;
+        if((capacity/2)==(lastindex+1) && capacity>1)
+        {
+            halfArray();
+        }
     }
 }
 void DynArray::edit(int index,int element)
@@ -68,46 +99,33 @@ void DynArray::edit(int index,int element)
 }
 void DynArray::insert(int index, int element)
 {
-    if (lastindex == capacity - 1)
-    {
-        doubleArray();
-        int i;
-        for (i = lastindex; i >= index; i--)
-        {
-            ptr[i + 1] = ptr[i];
-        }
-        ptr[index] =element;
-        lastindex++;
-    }
-    else if (index < 0 || index >= lastindex + 1)
+    if (index < 0 || index >= lastindex + 1)
     {
         cout << "Invalid Index" << endl;
     }
     else
-    {
+    {   if(checkArrayempty())
+            doubleArray();
         int i;
         for (i = lastindex; i >= index; i--)
         {
             ptr[i + 1] = ptr[i];
         }
-        ptr[index] = element;
         lastindex++;
+        ptr[index] =element;
     }
+   
 }
 void DynArray::append(int element)
 {
     if (lastindex == capacity - 1)
     {
         doubleArray();
-        ptr[lastindex+1]=element;
+    }
         lastindex++;
+        ptr[lastindex]=element;
         
-    }
-    else
-    {
-        lastindex++;
-        ptr[lastindex] = element;
-    }
+    
 }
 
 bool DynArray::checkArrayempty()
@@ -141,9 +159,14 @@ void DynArray::halfArray()
 {
     int *temp;
     temp=new int[capacity/2];
+    int i;
+    for(i=0;i<=lastindex;i++)
+    {
+        temp[i]=ptr[i];
+    }
     delete[]ptr;
     ptr=temp;
-    capacity=capacity/2;
+    capacity=(capacity/2);
 }
 int DynArray::Ccapacity()
 {
@@ -165,6 +188,19 @@ int main()
     a.append(67);
     a.displayArray();
     cout<<a.Ccapacity()<<endl;
+    cout<<a.getlastindex()<<endl;
+    a.insert(5,44);
+    a.displayArray();
+    a.append(11);
+    a.append(32);
+    a.append(56);
+    a.append(78);
+    a.displayArray();
+    cout<<a.Ccapacity()<<endl;
+    a.deleteElement(8);
+    a.displayArray();
+    cout<<a.Ccapacity()<<endl;
+
 
     return 0;
 }

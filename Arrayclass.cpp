@@ -36,20 +36,27 @@ public:
 
 // version 2 in this version we are going to add sorting,greatest element ,smallest element,search ele,sum of all element,average of all ele,rotate,
 void Array::remdupli()
-{
-    int i, j;
-    int temp;
-    for (j = 0; j <= lastindex; j++)
-    {
-        temp = ptr[j];
-        for (i = 1; i <= lastindex; i++)
-        {
-            if (temp == ptr[i])
-            {
-                deleteElement(ptr[i]);
-            }
-        }
-    }
+{   int i,j,k;
+    for ( i = 0; i < lastindex; i ++)  
+    {  
+        for ( j = i + 1; j < lastindex; j++)  
+        {  
+            // use if statement to check duplicate element  
+            if ( ptr[i] == ptr[j])  
+            {  
+                // delete the current position of the duplicate element  
+                for ( k = j; k <= lastindex - 1; k++)  
+                {  
+                    ptr[k] = ptr [k + 1];  
+                }  
+                // decrease the size of array after removing duplicate element  
+                lastindex--;  
+                  
+            // if the position of the elements is changes, don't increase the index j  
+                j--;      
+            }  
+        }  
+    }  
 }
 void Array::swap(int index1, int index2)
 {
@@ -317,8 +324,14 @@ int main()
     a.append(1);
     a.append(2);
     a.append(5);
-    a.append(8);
+    a.append(1);
     a.sort();
+    a.displayArray();
+    a.remdupli();
+    a.displayArray();
+    a.append(2);
+    a.displayArray();
+    a.remdupli();
     a.displayArray();
     return 0;
 }

@@ -57,16 +57,14 @@ int DynamicArray::isFull()
 void DynamicArray::deleteEle(int index)
 {
     int i,cc;
-    if(capacity%2)
-        cc=ceil((float)capacity/2);
-    else
-        cc=capacity/2;
+    cc=capacity/2;
     int *n;
     for(i=index;i<lastindex;i++)
         ptr[i]=ptr[i+1];
     lastindex--;
     if(lastindex==((capacity-1)/2))
         n=new int[cc];
+    capacity=cc;
 }
 void DynamicArray::edit(int index,int data)
 {
@@ -165,5 +163,17 @@ int main()
     cout<<endl;
     cout<<a.getcapacity()<<endl;
     
+    DynamicArray b(5);
+
+    b.append(3);
+    b.append(10);
+    b.append(44);
+    b.append(12);
+    b.append(42);
+    b.displayArray();
+    b.deleteEle(2);
+    b.deleteEle(3);
+    b.deleteEle(2);
+    cout<<b.getcapacity()<<endl;
     return 0;
 }

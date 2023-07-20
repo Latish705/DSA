@@ -34,7 +34,7 @@ SLL::~SLL()
     int i;
     for(i=0;start;i++)
     {
-        deleteFirstNode;
+        deleteFirstNode();
     }
 }
 void SLL::deleteatLastNode()
@@ -184,19 +184,21 @@ void SLL::displaylist()
 
 int main()
 {
-    SLL l1;
-    l1.insertAtStart(5);
-    l1.insertAtStart(8);
-    l1.insertAtStart(22);
-    l1.insertAtStart(33);
-    l1.insertAtStart(5111);
-    l1.insertAtStart(5552);
-    l1.displaylist();
-    cout<<l1.searchAtNode(22)<<endl;
-    l1.insertAtNode(4,31);
-    l1.displaylist();
-    l1.deleteFirstNode();
-    l1.displaylist();
-
+    // SLL l1;
+    // l1.insertAtStart(5);
+    // l1.insertAtStart(8);
+    // l1.insertAtStart(22);
+    // l1.insertAtStart(33);
+    // l1.insertAtStart(5111);
+    // l1.insertAtStart(5552);
+    // l1.displaylist();
+    // cout<<l1.searchAtNode(22)<<endl;
+    // l1.insertAtNode(4,31);
+    // l1.displaylist();
+    // l1.deleteFirstNode();
+    // l1.displaylist();
+    SLL l2;
+    l2.insertAtNode(5,55);
+    l2.displaylist();
     return 0;
 }

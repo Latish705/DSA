@@ -25,9 +25,23 @@ class SLL
     void insertAtNode(int,int );
     void displaylist();
     void deleteFirstNode();
-
+    void reverseList();
+    node* middleNode();
     SLL();
 };
+node* SLL::middleNode()
+{
+    node *t1;
+    node *t2;
+    t1=start;
+    t2=start;
+    while(t2->next)
+    {
+        t1=t1->next;
+        t2=t2->next->next;
+    }
+    return t1;
+}
 void SLL::deleteatLastNode()
 {
     node *t;
@@ -169,8 +183,26 @@ void SLL::displaylist()
         cout<<t->item<<endl;
         t=t->next;
     }
+    cout<<endl;
 }
-
+void SLL::reverseList()
+{
+    if(start)
+    {
+        node *t1;
+        node *t2;
+        t2=start->next;
+        start->next=NULL;
+        int i;
+        while(start->next)
+        {
+            t1=t2->next;
+            t2->next=start;
+            start=t1->next;
+            t2=start->next;
+        }
+    }
+}
 
 
 int main()
@@ -188,6 +220,11 @@ int main()
     l1.displaylist();
     l1.deleteFirstNode();
     l1.displaylist();
+    // l1.reverseList();
+    // cout<<"\nReverse List is\n";
+    // l1.displaylist();
+    node *n=l1.middleNode();
+    cout<<n->item;
 
     return 0;
 }

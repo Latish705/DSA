@@ -19,8 +19,13 @@ class sll{
     void deleteStart();
     void deleteEnd();
     void deleteSpecific(node *address);
+    node* getStart();
     ~sll();
 };
+node* sll::getStart()
+{
+    return start;
+}
 sll::~sll()
 {
     while(start)

@@ -1,18 +1,23 @@
 #include <stdio.h>
-void addEle(int index, int data,int size,int arr[])
+int lastindex=-1;
+int sizeo;
+void addEle(int data,int arr[])
 {
-    if (index < 0 || index >=size)
-    {
-        printf("Invalid Index\n");
-    }
+    if(lastindex==sizeo-1)
+        printf("Array is Full\n");
     else
     {
-        arr[index] = data;
+        lastindex++;
+        arr[lastindex] = data;
     }
 }
-void rotateByone(int size,int arr[])
+void rotateRightByone(int sizeo,int arr[])
 {
-    
+    int last=arr[sizeo-1];
+    int i;
+    for(i=sizeo-1;i>0;i--)
+        arr[i]=arr[i-1];
+    arr[0]=last;
 
 }
 void deleteEle(int index,int size,int arr[])
@@ -27,14 +32,23 @@ void deleteEle(int index,int size,int arr[])
         for (i = index; i < size; i++)
         {
             arr[i]=arr[i+1];
-            arr[size-i+1]=0;
         }
+        arr[size-1]=0;
     }
 }
 void insert(int index,int data,int size,int arr[])
 {
-    if(index<0 ||index>size-1)
-        printf("Invalid ");
+    if(lastindex==size-1)
+        printf("Array is Full\n");
+    else if(index<0||index>lastindex+1)
+        printf("Invalid Index\n");
+    else
+    {
+        int i=lastindex+1;
+        for(i;i!=index;i++)
+            arr[i]=arr[i-1];
+        arr[index]=data;
+    }
 }
 void sort(int size,int arr[])
 {
@@ -58,6 +72,7 @@ int main()
     printf("Enter the size of Array you want : ");
     scanf("%d", &size);
     int a[size];
+    sizeo=size;
     int i;
     int data, index;
     for(i=0;i<size;i++)
@@ -72,14 +87,14 @@ int main()
         printf("2.delete at specific index\n");
         printf("3.Insert at specific index\n");
         printf("4.Sort\n");
-        printf("5.form different array of even and odd elements\n");
-        printf("6.Exit");
+        printf("5.Rotate Array by one\n");
+        printf("6.Exit\n");
         scanf("%d", &choice);
         switch(choice)
         {   case 1:
-                printf("Enter index and data : ");
-                scanf("%d %d", &index, &data);
-                addEle(index, data,size,a);
+                printf("Enter data : ");
+                scanf("%d", &data);
+                addEle(data,a);
                 for(i=0;i<size;i++)
                 {
                     printf("%d ",a[i]);
@@ -115,7 +130,7 @@ int main()
                 printf("\n");
                 break;
             case 5:
-                rotateByone(size,a);
+                rotateRightByone(size,a);
                 for(i=0;i<size;i++)
                 {
                     printf("%d ",a[i]);

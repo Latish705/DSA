@@ -17,7 +17,30 @@ class queue
     void viewFront();
     void deleteEle();
     ~queue();
+    bool isQueueOverFlow();
+    bool isQueueUnderFlow();
+    int countNumber();
 };
+int queue::countNumber()
+{
+    int i=front;
+    while(i!=rear)
+    {
+        if(i==capacity-1)
+            i=0;
+    }
+    return i;
+}
+bool queue::isQueueUnderFlow()
+{
+    return rear==-1;
+}
+bool queue::isQueueOverFlow()
+{
+    if((front==0&&rear==(capacity-1))||rear+1==front)
+        return 1;
+    return 0;
+}
 queue::~queue()
 {
     delete[] ptr;

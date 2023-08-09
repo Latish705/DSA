@@ -1,7 +1,7 @@
 #include "sirArray.cpp"
 #include<iostream>
 using namespace std;
-class stack:private Array
+class stack:public Array
 {
     public:
     stack(int cap);

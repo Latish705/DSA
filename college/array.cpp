@@ -19,13 +19,28 @@ class Array
     bool isFull();
     int getele(int index);
     int count();
+    int getCapacity();
     ~Array();
     int findEle(int data);
-    void sort();
+    //void sort();
     int findGreatest();
     int findSmallest();
+    void operator=(Array &arr);
 
 };
+void Array::operator=(Array &arr)
+{
+    arr.capacity=capacity;
+    arr.lastindex=lastindex;
+    ptr=new int[getCapacity()];
+    int i=0;
+    while(i-1!=lastindex)
+        arr.ptr[i]=ptr[i];
+}
+int Array::getCapacity()
+{
+    return capacity;
+}
 int Array::findSmallest()
 {
     int min=ptr[0];
@@ -96,6 +111,7 @@ void Array::deleteEle(int index)
             int i;
             for(i=index;i!=lastindex;i++)
                 ptr[i]=ptr[i+1];
+            lastindex--;
         }
 }
 void Array::edit(int index,int data)
@@ -150,18 +166,18 @@ Array::Array(int data)
     capacity=data;
 }
 
-int main()
-{
-    Array a(7);
-    a.append(14);
-    a.displayArray();
-    a.append(15);
-    a.append(16);
-    a.append(18);
-    a.append(19);
-    a.append(20);
-    a.displayArray();
-    a.insert(3,17);
-    a.displayArray();
-    return 0;
-}
+//int main()
+//{
+    // Array a(7);
+    // a.append(14);
+    // a.displayArray();
+    // a.append(15);
+    // a.append(16);
+    // a.append(18);
+    // a.append(19);
+    // a.append(20);
+    // a.displayArray();
+    // a.insert(3,17);
+    // a.displayArray();
+  //  return 0;
+//}

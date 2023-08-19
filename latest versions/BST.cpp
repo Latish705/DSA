@@ -33,15 +33,25 @@ class BST
     void inorderTraversing();
     node* search(int data);
     void Delete(int data);
-    void traverseRight(node *t);
+    int traverseRight(node *t);
     ~BST();
 };
-void BST::traverseRight(node *t)
+int BST::traverseRight(node *t)
 {
-    while (t->left!=NULL&&t->right!=NULL)
+    node *n;
+    while(t->left!=NULL&&t->right!=NULL)
     {
-        t=t->right;
+        if(t->right->right==NULL && t->right->left!=NULL)
+        {
+            Delete(t->item);
+        }
+        else
+            t=t->right;
     }
+    int c=t->item;
+    delete t;
+    return c;
+
 }
 void BST::Delete(int data)
 {
@@ -68,7 +78,20 @@ void BST::Delete(int data)
     {
         if(tchild->right&&tchild->left)
         {
-            traverseRight(tchild->left);
+            tchild->item=traverseRight(tchild->left);
+        }
+        else if((tchild->right==NULL&&tchild->left!=NULL))
+        {
+            tparent->right=tchild->right;
+        }
+        else if((tchild->left==NULL&&tchild->right!=NULL))
+        {
+            tparent->left=tchild->left;
+        }
+        else
+        {
+            tparent->left=NULL;
+            tparent->right=NULL;
         }
     }
 
